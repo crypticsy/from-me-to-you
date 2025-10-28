@@ -1,0 +1,210 @@
+
+@keyframes popUp {
+  0% {
+    transform: translateY(110%) scale(0.5);
+  }
+  100% {
+    transform: translateY(0%) scale(1);
+  }
+}
+
+.animate-popUp {
+  animation: popUp 0.8s ease-out 0.2s forwards;
+}@layer tailwind-base, primereact, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+@keyframes popUp {
+  0% {
+    transform: translateY(110%) scale(0.5);
+  }
+  100% {
+    transform: translateY(0%) scale(1);
+  }
+}
+
+.animate-popUp {
+  animation: popUp 0.8s ease-out 0.2s forwards;
+}
+@layer components {
+  .text-2xs {
+    font-size: 0.65rem;
+    line-height: 0.75rem /* 12px */;
+  }
+  .text-3xs {
+    font-size: 0.55rem;
+    line-height: 0.65rem /* 12px */;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.25s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #F6F6F6 !important;
+  height: 100%;
+  min-height: -moz-available; /* WebKit-based browsers will ignore this. */
+  min-height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  font-family: "Indie Flower", cursive;
+}
+
+:root {
+  background-color: #F6F6F6 !important;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p{
+  line-height: 1.25rem;
+}
+
+.prevent-select {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+@keyframes popUp {
+  0% {
+    transform: translateY(110%) scale(0.5);
+  }
+  100% {
+    transform: translateY(0%) scale(1);
+  }
+}
+
+.animate-popUp {
+  animation: popUp 0.6s ease-out 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+.fade-in-delay-0 {
+  animation-delay: 0.5s;
+}
+
+.fade-in-delay-1 {
+  animation-delay: 1s;
+}
+
+.fade-in-delay-2 {
+  animation-delay: 1.5s;
+}
+
+.fade-in-delay-3 {
+  animation-delay: 2s;
+}
+
+@keyframes fadeInChar {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px); /* optional "slide up" effect */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base style for each character */
+.reveal-text span {
+  display: inline-block;          /* ensures transform affects only this letter */
+  opacity: 0;                     /* start invisible */
+  animation: fadeInChar 0.2s forwards ease-in; /* fade+slide over 0.4s */
+}
+
+
+/* Marker styling */
+.marker {
+  position: relative;
+  margin: 0 40px;
+  color: #ab161c;
+  text-decoration: none;
+}
+.marker svg {
+  position: absolute;
+  left: 0;
+  top: -50%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+.marker path {
+  transition: stroke-dashoffset 300ms linear;
+  stroke-width: 1;
+  stroke: #ab161c;
+  fill: none;
+  stroke-linecap: round;
+}
+.marker:hover path {
+  stroke-dashoffset: 0;
+}

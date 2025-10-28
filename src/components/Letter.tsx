@@ -79,8 +79,18 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
           {/* Envelope Body */}
           <motion.div
             className={`absolute inset-0 ${colors.envelope} ${colors.accent} rounded-lg shadow-2xl border-4`}
-            animate={isOpened ? { y: 20 } : { y: 0 }}
+            initial={{ y: 0 }}
+            animate={{ y: isOpened ? 0 : 0 }}
+            transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
           >
+            {/* Envelope seam lines - diagonal lines from corners to center */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-lg">
+              {/* Left diagonal line */}
+              <div className={`absolute top-0 left-0 h-[200%] w-0 border-l-2 ${colors.accent} opacity-30 origin-top-left -rotate-[55deg]`} />
+              {/* Right diagonal line */}
+              <div className={`absolute top-0 right-0 h-[200%] w-0 border-r-2 ${colors.accent} opacity-30 origin-top-right rotate-[55deg]`} />
+            </div>
+
             {/* Decorative Seal/Stamp */}
             {!isOpened && (
               <motion.div
@@ -147,17 +157,23 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
               clipPath: "polygon(0 0, 100% 0, 50% 100%)",
               backfaceVisibility: "hidden",
             }}
-            initial={false}
-            animate={
-              isOpened
-                ? { rotateX: -120, y: 0, z: 0 }
-                : { rotateX: 0, y: 0, z: 0 }
-            }
+            initial={{ rotateX: 0 }}
+            animate={{
+              rotateX: isOpened ? -120 : 0
+            }}
             transition={{
               duration: 0.8,
               ease: [0.65, 0, 0.35, 1], // smoother easing
             }}
-          />
+          >
+            {/* Flap seam lines - diagonal lines from top corners to bottom center */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Left diagonal line */}
+              <div className={`absolute top-0 left-0 h-full w-1/2 border-l-2 ${colors.accent} opacity-30 origin-top-left rotate-[27deg]`} />
+              {/* Right diagonal line */}
+              <div className={`absolute top-0 right-0 h-full w-1/2 border-r-2 ${colors.accent} opacity-30 origin-top-right -rotate-[27deg]`} />
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 

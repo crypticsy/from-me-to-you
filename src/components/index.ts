@@ -1,3 +1,3 @@
 export { Letter } from "./Letter";
-export { default as CircularGallery } from "./CircularGallery";
+export { LetterContainer } from "./LetterContainer";
 export { ViewportFix } from "./ViewportFix";

@@ -1,33 +1,32 @@
-import { Letter } from "../components";
-import { PiHeartbeatFill, PiFlowerTulipFill, PiSunHorizonFill, PiHeartFill } from "react-icons/pi";
+import { Letter, LetterContainer } from "../components";
+import { PiTrophyFill, PiMedalFill, PiStarFill, PiConfettiFill } from "react-icons/pi";
 
-export function GetWellSoon() {
+export function Congratulations() {
   return (
-    <Letter theme="getwellsoon">
-      <div className="h-screen-safe w-screen px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 flex items-center justify-center safe-left safe-right overflow-hidden">
-        <div className="max-w-4xl w-full flex flex-col justify-center items-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 text-center animate-fadeIn py-4">
-          {/* Icon Decoration */}
-          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-teal-600">
+    <Letter theme="congratulations">
+      <LetterContainer bgGradient="from-emerald-50 via-green-50 to-teal-50">
+        {/* Icon Decoration */}
+          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-emerald-600">
             <span className="animate-bounce" style={{ animationDelay: "0s" }}>
-              <PiHeartbeatFill />
+              <PiTrophyFill />
             </span>
             <span className="animate-bounce" style={{ animationDelay: "0.1s" }}>
-              <PiFlowerTulipFill />
+              <PiMedalFill />
             </span>
             <span className="animate-bounce" style={{ animationDelay: "0.2s" }}>
-              <PiSunHorizonFill />
+              <PiStarFill />
             </span>
             <span className="animate-bounce" style={{ animationDelay: "0.3s" }}>
-              <PiHeartFill />
+              <PiConfettiFill />
             </span>
           </div>
 
           {/* Title */}
           <h1
-            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-teal-600 leading-tight"
+            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-emerald-600 leading-tight"
             style={{ fontFamily: "'Caveat', cursive" }}
           >
-            Get Well Soon!
+            Congratulations!
           </h1>
 
           {/* Message */}
@@ -36,26 +35,26 @@ export function GetWellSoon() {
             style={{ fontFamily: "'Indie Flower', cursive" }}
           >
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "0.3s" }}>
-              I hope these words bring you comfort and warmth
+              Your hard work and dedication have truly paid off!
             </p>
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "0.6s" }}>
-              as you take the time you need to rest and heal.
+              This achievement is a testament to your perseverance,
             </p>
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "0.9s" }}>
-              Remember that you are strong, resilient,
+              your passion, and your unwavering commitment
             </p>
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "1.2s" }}>
-              and surrounded by people who care about you deeply.
+              to excellence in everything you do.
             </p>
 
             {/* Special Message */}
             <div
-              className="pt-3 sm:pt-4 md:pt-5 lg:pt-6 space-y-1 sm:space-y-2 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-teal-700 animate-fadeInUp"
+              className="pt-3 sm:pt-4 md:pt-5 lg:pt-6 space-y-1 sm:space-y-2 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-emerald-700 animate-fadeInUp"
               style={{ animationDelay: "1.5s" }}
             >
-              <p className="leading-snug mb-5">Take all the time you need,</p>
-              <p className="text-teal-800 leading-snug flex items-center justify-center gap-2">
-                we'll be here when you're ready!
+              <p className="leading-snug mb-5">You deserve every bit of this success!</p>
+              <p className="text-emerald-800 leading-snug flex items-center justify-center gap-2">
+                Keep shining bright!
               </p>
             </div>
           </div>
@@ -68,10 +67,9 @@ export function GetWellSoon() {
               animationDelay: "1.8s",
             }}
           >
-            <p>~ Wishing you a speedy recovery ~</p>
-          </div>
+            <p>~ So proud of you ~</p>
         </div>
-      </div>
+      </LetterContainer>
     </Letter>
   );
 }

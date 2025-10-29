@@ -1,33 +1,33 @@
-import { Letter } from "../components";
-import { PiFlowerTulipFill, PiStarFill, PiSparkle, PiHandHeartFill } from "react-icons/pi";
+import { Letter, LetterContainer } from "../components";
+import { LiaBirthdayCakeSolid } from "react-icons/lia";
+import { PiConfettiFill, PiBalloonFill, PiGiftFill } from "react-icons/pi";
 
-export function ThankYou() {
+export function Birthday() {
   return (
-    <Letter theme="thankyou">
-      <div className="h-screen-safe w-screen px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 flex items-center justify-center safe-left safe-right overflow-hidden">
-        <div className="max-w-4xl w-full flex flex-col justify-center items-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 text-center animate-fadeIn py-4">
-          {/* Icon Decoration */}
-          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-purple-600">
+    <Letter theme="birthday">
+      <LetterContainer bgGradient="from-yellow-50 via-orange-50 to-pink-50">
+        {/* Icon Decoration */}
+          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-orange-600">
             <span className="animate-bounce" style={{ animationDelay: "0s" }}>
-              <PiFlowerTulipFill />
+              <LiaBirthdayCakeSolid />
             </span>
             <span className="animate-bounce" style={{ animationDelay: "0.1s" }}>
-              <PiStarFill />
+              <PiConfettiFill />
             </span>
             <span className="animate-bounce" style={{ animationDelay: "0.2s" }}>
-              <PiSparkle />
+              <PiBalloonFill />
             </span>
             <span className="animate-bounce" style={{ animationDelay: "0.3s" }}>
-              <PiHandHeartFill />
+              <PiGiftFill />
             </span>
           </div>
 
           {/* Title */}
           <h1
-            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-purple-600 leading-tight"
+            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-orange-600 leading-tight"
             style={{ fontFamily: "'Caveat', cursive" }}
           >
-            Thank You!
+            Happy Birthday!
           </h1>
 
           {/* Message */}
@@ -36,26 +36,26 @@ export function ThankYou() {
             style={{ fontFamily: "'Indie Flower', cursive" }}
           >
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "0.3s" }}>
-              Words cannot express how grateful I am
+              On this special day, I just wanted to take a moment
             </p>
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "0.6s" }}>
-              for everything you've done for me.
+              to tell you how grateful I am to have you in my life.
             </p>
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "0.9s" }}>
-              Your kindness, support, and generosity
+              You bring so much joy, laughter, and happiness
             </p>
             <p className="animate-fadeInUp leading-relaxed" style={{ animationDelay: "1.2s" }}>
-              have made such a difference in my life.
+              into every moment we share together.
             </p>
 
             {/* Special Thank You Message */}
             <div
-              className="pt-3 sm:pt-4 md:pt-5 lg:pt-6 space-y-1 sm:space-y-2 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-purple-700 animate-fadeInUp"
+              className="pt-3 sm:pt-4 md:pt-5 lg:pt-6 space-y-1 sm:space-y-2 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-orange-700 animate-fadeInUp"
               style={{ animationDelay: "1.5s" }}
             >
-              <p className="leading-snug mb-5">From the bottom of my heart,</p>
-              <p className="text-purple-800 leading-snug flex items-center justify-center gap-2">
-                thank you for being you!
+              <p className="leading-snug mb-5">Thank you for being</p>
+              <p className="text-orange-800 leading-snug flex items-center justify-center gap-2">
+                the best friend ever!
               </p>
             </div>
           </div>
@@ -68,10 +68,9 @@ export function ThankYou() {
               animationDelay: "1.8s",
             }}
           >
-            <p>~ With sincere gratitude ~</p>
-          </div>
+            <p>~ With all my love ~</p>
         </div>
-      </div>
+      </LetterContainer>
     </Letter>
   );
 }

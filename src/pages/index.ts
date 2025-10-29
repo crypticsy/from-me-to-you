@@ -1,8 +1,8 @@
 export { Home } from "./Home";
-export { Valentine } from "./Valentine";
-export { Birthday } from "./Birthday";
-export { ThankYou } from "./ThankYou";
-export { Congratulations } from "./Congratulations";
-export { GetWellSoon } from "./GetWellSoon";
-export { Anniversary } from "./Anniversary";
-export { Friendship } from "./Friendship";
+export { Valentine } from "../letters/Valentine";
+export { Birthday } from "../letters/Birthday";
+export { ThankYou } from "../letters/ThankYou";
+export { Congratulations } from "../letters/Congratulations";
+export { GetWellSoon } from "../letters/GetWellSoon";
+export { Anniversary } from "../letters/Anniversary";
+export { Friendship } from "../letters/Friendship";

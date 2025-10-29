@@ -1,12 +1,11 @@
-import { Letter } from "../components";
+import { Letter, LetterContainer } from "../components";
 import { PiHeartFill, PiChampagneFill, PiCakeFill, PiSparkle } from "react-icons/pi";
 
 export function Anniversary() {
   return (
     <Letter theme="anniversary">
-      <div className="h-screen-safe w-screen px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 flex items-center justify-center safe-left safe-right overflow-hidden">
-        <div className="max-w-4xl w-full flex flex-col justify-center items-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 text-center animate-fadeIn py-4">
-          {/* Icon Decoration */}
+      <LetterContainer bgGradient="from-amber-50 via-yellow-50 to-orange-50">
+        {/* Icon Decoration */}
           <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-amber-600">
             <span className="animate-bounce" style={{ animationDelay: "0s" }}>
               <PiHeartFill />
@@ -69,9 +68,8 @@ export function Anniversary() {
             }}
           >
             <p>~ Forever yours ~</p>
-          </div>
         </div>
-      </div>
+      </LetterContainer>
     </Letter>
   );
 }

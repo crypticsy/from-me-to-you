@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PiHeartBold, PiHandHeartFill } from "react-icons/pi";
+import { PiHeartBold, PiHandHeartFill, PiTrophyFill, PiHeartbeatFill, PiChampagneFill, PiHandsClappingFill } from "react-icons/pi";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
 import { FaRegHandPointer } from "react-icons/fa";
 
 interface LetterProps {
   children: React.ReactNode;
-  theme?: "valentine" | "birthday" | "thankyou";
+  theme?: "valentine" | "birthday" | "thankyou" | "congratulations" | "getwellsoon" | "anniversary" | "friendship";
 }
 
 export function Letter({ children, theme = "valentine" }: LetterProps) {
@@ -39,9 +39,62 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
       stamp: "bg-purple-700",
       stampBorder: "border-blue-900",
     },
+    congratulations: {
+      envelope: "bg-emerald-100",
+      flap: "bg-emerald-200",
+      paper: "bg-green-50",
+      accent: "border-emerald-300",
+      stamp: "bg-emerald-700",
+      stampBorder: "border-teal-900",
+    },
+    getwellsoon: {
+      envelope: "bg-teal-100",
+      flap: "bg-teal-200",
+      paper: "bg-cyan-50",
+      accent: "border-teal-300",
+      stamp: "bg-teal-700",
+      stampBorder: "border-blue-900",
+    },
+    anniversary: {
+      envelope: "bg-amber-100",
+      flap: "bg-amber-200",
+      paper: "bg-yellow-50",
+      accent: "border-amber-300",
+      stamp: "bg-amber-700",
+      stampBorder: "border-orange-900",
+    },
+    friendship: {
+      envelope: "bg-indigo-100",
+      flap: "bg-indigo-200",
+      paper: "bg-violet-50",
+      accent: "border-indigo-300",
+      stamp: "bg-indigo-700",
+      stampBorder: "border-purple-900",
+    },
   };
 
   const colors = themeColors[theme];
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case "valentine":
+        return <PiHeartBold />;
+      case "birthday":
+        return <LiaBirthdayCakeSolid />;
+      case "thankyou":
+        return <PiHandHeartFill />;
+      case "congratulations":
+        return <PiTrophyFill />;
+      case "getwellsoon":
+        return <PiHeartbeatFill />;
+      case "anniversary":
+        return <PiChampagneFill />;
+      case "friendship":
+        return <PiHandsClappingFill />;
+      default:
+        return <PiHeartBold />;
+    }
+  };
 
   const handleLetterClick = () => {
     if (!isOpened) {
@@ -101,13 +154,7 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
               >
                 <div className={`w-14 h-14 sm:w-20 sm:h-20 z-20 rounded-full ${colors.stamp} ${colors.stampBorder} flex items-center justify-center aspect-square border-4`}>
                   <span className="text-xl sm:text-4xl md:text-5xl text-white">
-                    {theme === "valentine" ? (
-                      <PiHeartBold />
-                    ) : theme === "birthday" ? (
-                      <LiaBirthdayCakeSolid />
-                    ) : (
-                      <PiHandHeartFill />
-                    )}
+                    {getThemeIcon()}
                   </span>
                 </div>
               </motion.div>
@@ -132,13 +179,7 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
                     style={{ fontFamily: "'Indie Flower', cursive" }}
                   >
                     <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2 md:mb-4">
-                      {theme === "valentine" ? (
-                        <PiHeartBold />
-                      ) : theme === "birthday" ? (
-                        <LiaBirthdayCakeSolid />
-                      ) : (
-                        <PiHandHeartFill />
-                      )}
+                      {getThemeIcon()}
                     </div>
                     <p className="italic leading-relaxed text-xs sm:text-sm md:text-base">
                       Opening your special message...

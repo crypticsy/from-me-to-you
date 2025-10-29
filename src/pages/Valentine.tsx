@@ -55,8 +55,8 @@ export function Valentine() {
 
   return (
     <Letter theme="valentine">
-      <div className="h-screen-safe w-[100vw] px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative safe-left safe-right">
-        <div className="h-full w-full flex flex-col items-center justify-center space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 py-4">
+      <div className="h-screen-safe w-screen px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative safe-left safe-right overflow-hidden">
+        <div className="h-screen-safe w-full flex flex-col items-center justify-center space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 py-4">
           <img
             src={floatingBear}
             alt="floating bear"
@@ -100,7 +100,7 @@ export function Valentine() {
             <div
               ref={backupButtonRef}
               className={
-                "hidden text-transparent !cursor-none " + buttonBaseClass
+                buttonBaseClass + " hidden opacity-0 pointer-events-none"
               }
             >
               No
@@ -110,7 +110,7 @@ export function Valentine() {
 
         {showMessage && (
           <div
-            className="fixed inset-0 flex items-center justify-center animate-slideUp z-50 px-4 safe-inset"
+            className="fixed inset-0 flex items-center justify-center animate-fadeIn z-50 px-4 safe-inset"
             style={{ backgroundColor: "rgba(255, 255, 255, 0.95)" }}
           >
             <div

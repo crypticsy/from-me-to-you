@@ -5,7 +5,7 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
 
-import { Home, Valentine, Birthday, ThankYou } from './pages';
+import { Home, Valentine, Birthday, ThankYou, Congratulations, GetWellSoon, Anniversary, Friendship } from './pages';
 
 import './index.css';
 
@@ -14,7 +14,11 @@ const routes = [
   { path: "/", element: <Home /> },
   { path: "/valentine", element: <Valentine /> },
   { path: "/birthday", element: <Birthday /> },
-  { path: "/thankyou", element: <ThankYou /> }
+  { path: "/thankyou", element: <ThankYou /> },
+  { path: "/congratulations", element: <Congratulations /> },
+  { path: "/getwellsoon", element: <GetWellSoon /> },
+  { path: "/anniversary", element: <Anniversary /> },
+  { path: "/friendship", element: <Friendship /> }
 ];
 
 const router = createHashRouter(

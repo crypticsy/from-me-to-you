@@ -731,27 +731,47 @@ export default function CircularGallery({
         }
       };
 
-      const handleClick = () => {
+      const handleClick = (e: MouseEvent) => {
         const endTime = Date.now();
         const timeDiff = endTime - startTime;
 
         // Only trigger click if not dragging and was quick tap/click
         if (isDragging || timeDiff > clickTimeThreshold) return;
 
-        // Calculate which card is currently centered
         if (!app.medias || !app.medias[0] || !items) return;
-        const width = app.medias[0].width;
-        const currentIndex = Math.round(Math.abs(app.scroll.current) / width);
+
+        // Get click position relative to canvas
+        const rect = canvas.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const canvasWidth = rect.width;
+        const canvasHeight = rect.height;
+
+        // Convert click position to viewport coordinates
+        const viewportX = (clickX / canvasWidth) * app.viewport.width - app.viewport.width / 2;
+
+        // Find which card was clicked by checking positions
+        let clickedIndex = -1;
+        let minDistance = Infinity;
+
+        app.medias.forEach((media, index) => {
+          const mediaX = media.plane.position.x;
+          const mediaHalfWidth = media.plane.scale.x / 2;
+
+          // Check if click is within card bounds
+          const distance = Math.abs(viewportX - mediaX);
+          if (distance < mediaHalfWidth && distance < minDistance) {
+            minDistance = distance;
+            clickedIndex = index;
+          }
+        });
+
+        if (clickedIndex === -1) return;
 
         // mediasImages is duplicated (items.concat(items)), so we need to map back to original items
-        const mediasCount = app.medias.length;
         const originalItemsCount = items.length;
 
-        // Get the index in the mediasImages array
-        const mediaIndex = currentIndex % mediasCount;
-
         // Map back to the original items array (since medias is duplicated)
-        const actualIndex = mediaIndex % originalItemsCount;
+        const actualIndex = clickedIndex % originalItemsCount;
 
         onItemClick(actualIndex);
       };
@@ -762,7 +782,41 @@ export default function CircularGallery({
 
         // For touch devices, trigger navigation on touchend if it was a tap
         if (!isDragging && timeDiff <= clickTimeThreshold) {
-          handleClick();
+          if (!app.medias || !app.medias[0] || !items) return;
+
+          // Get touch position relative to canvas
+          const rect = canvas.getBoundingClientRect();
+          const touchX = startX - rect.left;
+          const canvasWidth = rect.width;
+
+          // Convert touch position to viewport coordinates
+          const viewportX = (touchX / canvasWidth) * app.viewport.width - app.viewport.width / 2;
+
+          // Find which card was touched by checking positions
+          let clickedIndex = -1;
+          let minDistance = Infinity;
+
+          app.medias.forEach((media, index) => {
+            const mediaX = media.plane.position.x;
+            const mediaHalfWidth = media.plane.scale.x / 2;
+
+            // Check if touch is within card bounds
+            const distance = Math.abs(viewportX - mediaX);
+            if (distance < mediaHalfWidth && distance < minDistance) {
+              minDistance = distance;
+              clickedIndex = index;
+            }
+          });
+
+          if (clickedIndex === -1) return;
+
+          // mediasImages is duplicated (items.concat(items)), so we need to map back to original items
+          const originalItemsCount = items.length;
+
+          // Map back to the original items array (since medias is duplicated)
+          const actualIndex = clickedIndex % originalItemsCount;
+
+          onItemClick(actualIndex);
         }
       };
 

@@ -31,7 +31,7 @@ export function Valentine() {
   };
 
   // Handle the "No" button click
-  const onNoButtonClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onNoButtonClick = () => {
     // check if no button has absolute in its class, then add absolute to it
     if (!noButtonRef.current?.className.includes("absolute")) {
       noButtonRef.current?.classList.add("absolute");
@@ -55,7 +55,7 @@ export function Valentine() {
 
   return (
     <Letter theme="valentine">
-      <div className="h-[100vh] w-[100vvw] px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative">
+      <div className="h-screen-safe w-[100vw] px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16 relative safe-left safe-right">
         <div className="h-full w-full flex flex-col items-center justify-center space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 py-4">
           <img
             src={floatingBear}
@@ -110,7 +110,7 @@ export function Valentine() {
 
         {showMessage && (
           <div
-            className="fixed inset-0 flex items-center justify-center animate-slideUp z-50 px-4"
+            className="fixed inset-0 flex items-center justify-center animate-slideUp z-50 px-4 safe-inset"
             style={{ backgroundColor: "rgba(255, 255, 255, 0.95)" }}
           >
             <div

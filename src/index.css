@@ -41,6 +41,39 @@
     font-size: 0.55rem;
     line-height: 0.65rem /* 12px */;
   }
+
+  /* Safe area utility classes for mobile browser UI */
+  .safe-top {
+    padding-top: var(--safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: var(--safe-area-inset-bottom);
+  }
+  .safe-left {
+    padding-left: var(--safe-area-inset-left);
+  }
+  .safe-right {
+    padding-right: var(--safe-area-inset-right);
+  }
+
+  /* Mobile-friendly height that accounts for browser UI */
+  .min-h-screen-safe {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+
+  .h-screen-safe {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+
+  /* Safe area padding for fixed/absolute positioned elements */
+  .safe-inset {
+    padding-top: var(--safe-area-inset-top);
+    padding-bottom: var(--safe-area-inset-bottom);
+    padding-left: var(--safe-area-inset-left);
+    padding-right: var(--safe-area-inset-right);
+  }
 }
 
 @keyframes slideUp {
@@ -58,6 +91,9 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 body {
@@ -65,13 +101,26 @@ body {
   overflow: hidden;
   background-color: #F6F6F6 !important;
   height: 100%;
+  min-height: 100vh;
   min-height: -moz-available; /* WebKit-based browsers will ignore this. */
   min-height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
   font-family: "Indie Flower", cursive;
 }
 
+#root {
+  height: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
 :root {
   background-color: #F6F6F6 !important;
+
+  /* Safe area insets for mobile devices with notches/Dynamic Island */
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

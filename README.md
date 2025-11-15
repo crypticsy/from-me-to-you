@@ -1,6 +1,18 @@
-# From Me to You 💌
+# From Me to You
 
-A web application for sending heartfelt digital letters to your loved ones. 
+### Overview
+<p style="text-align: justify;"> From Me to You is your little corner of the internet for sending heartfelt digital letters. Share your thoughts, feelings, or a simple “thinking of you” with anyone, anywhere—no stamps or envelopes required. </p> 
+
+<br/>
+
+<div align="center" style="flex-direction: column;">
+  <img src="./public/home_screen.png" alt="App Demo" width="100%"/>
+  <div style="font-size: 0.8em; color: gray;">Home Screen</div> 
+</div> 
+
+<br/> 
+
+<p style="text-align: justify;"> It’s a simple way to connect, share warmth, and make someone feel truly special—one letter at a time. </p>
 
 <br/>
 

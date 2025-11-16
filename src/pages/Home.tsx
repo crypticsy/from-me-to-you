@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { PiHeartBold, PiHandHeartFill, PiTrophyFill, PiFlowerTulipFill, PiChampagneFill, PiHandsClappingFill } from "react-icons/pi";
+import { PiHeartBold, PiHandHeartFill, PiTrophyFill, PiFlowerTulipFill, PiChampagneFill, PiHandsClappingFill, PiEyeBold, PiShareNetworkBold } from "react-icons/pi";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
 import CircularGallery from "../components/CircularGallery";
 import { renderToStaticMarkup } from 'react-dom/server';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Dialog } from "primereact/dialog";
+import { Toast } from "primereact/toast";
 
 export function Home() {
   const navigate = useNavigate();
+  const toast = useRef<Toast>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedLetter, setSelectedLetter] = useState<{ title: string; path: string; color: string } | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -215,9 +220,11 @@ export function Home() {
             scrollEase={0.05}
             font={isMobile ? 'bold 24px Caveat' : 'bold 32px Caveat'}
             onItemClick={(index: number) => {
-              const item = galleryItems[index % galleryItems.length];
-              if (item.path) {
-                navigate(item.path);
+              const actualIndex = index % letters.length;
+              const letter = letters[actualIndex];
+              if (letter.path) {
+                setSelectedLetter(letter);
+                setShowModal(true);
               }
             }}
           />
@@ -250,6 +257,87 @@ export function Home() {
           </a>
         </p>
       </div>
+
+      {/* Toast Notification */}
+      <Toast ref={toast} position="top-right" />
+
+      {/* Modal */}
+      <Dialog
+        visible={showModal}
+        onHide={() => setShowModal(false)}
+        dismissableMask
+        className="w-11/12 max-w-md"
+        pt={{
+          root: { className: 'rounded-3xl shadow-2xl bg-gradient-to-br from-amber-50 via-rose-50 to-purple-50' },
+          header: { className: 'hidden' },
+          content: { className: 'rounded-3xl p-6 sm:p-8' }
+        }}
+      >
+        <div className="text-center space-y-8 py-2">
+          <div className="space-y-3">
+            <h2
+              className="text-4xl sm:text-5xl text-gray-700 leading-wide"
+              style={{ fontFamily: "'Caveat', cursive", lineHeight:"1.2" }}
+            >You picked the &nbsp;<br/>
+              {selectedLetter?.title} Letter
+            </h2>
+            <p
+              className="text-base sm:text-lg text-gray-600 leading-relaxed"
+              style={{ fontFamily: "'Indie Flower', cursive" }}
+            >
+              What would you like to do?
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {/* Preview Button */}
+            <button
+              onClick={() => {
+                setShowModal(false);
+                if (selectedLetter?.path) {
+                  navigate(selectedLetter.path);
+                }
+              }}
+              className="group relative w-full py-5 px-6 bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 border-2 border-purple-300 text-purple-700 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              <PiEyeBold className="text-2xl sm:text-3xl relative z-10" />
+              <span
+                className="text-xl sm:text-2xl relative z-10"
+                style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
+              >
+                Preview Letter
+              </span>
+            </button>
+
+            {/* Share Button */}
+            <button
+              onClick={() => {
+                if (selectedLetter?.path) {
+                  const url = `${window.location.origin}${window.location.pathname}#${selectedLetter.path}`;
+                  navigator.clipboard.writeText(url).then(() => {
+                    toast.current?.show({
+                      severity: 'success',
+                      summary: 'Link copied to clipboard ✨',
+                      life: 1000
+                    });
+                  });
+                }
+              }}
+              className="group relative w-full py-5 px-6 bg-gradient-to-br from-blue-100 to-cyan-100 hover:from-blue-200 hover:to-cyan-200 border-2 border-blue-300 text-blue-700 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              <PiShareNetworkBold className="text-2xl sm:text-3xl relative z-10" />
+              <span
+                className="text-xl sm:text-2xl relative z-10"
+                style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
+              >
+                Share Link
+              </span>
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }

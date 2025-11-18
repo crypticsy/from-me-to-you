@@ -1,7 +1,7 @@
 # From Me to You
 
 ### Overview
-<p style="text-align: justify;"> From Me to You is your little corner of the internet for sending heartfelt digital letters. Share your thoughts, feelings, or a simple “thinking of you” with anyone, anywhere—no stamps or envelopes required. </p> 
+<p style="text-align: justify;"> From Me to You is your little corner of the internet for sending heartfelt digital letters. Share your thoughts and feelings with anyone, anywhere — no stamps or envelopes required, just a share link. </p> 
 
 <br/>
 

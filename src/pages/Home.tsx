@@ -243,7 +243,7 @@ export function Home() {
         >
           <span>Made with love and a little bit of magic by</span>
           <a
-            href="https://github.com/crypticsy"
+            href="https://www.animeshbasnet.com.np/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-blue-600 dark:text-blue-400 inline-flex items-center gap-2 hover:underline"

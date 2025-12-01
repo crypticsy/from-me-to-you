@@ -12,6 +12,7 @@ import {
   GetWellSoon,
   Anniversary,
   Friendship,
+  CustomSweater,
 } from "./pages";
 import { ViewportFix } from "./components/ViewportFix";
 import "./index.css";
@@ -26,6 +27,7 @@ const routes = [
   { path: "/getwellsoon", element: <GetWellSoon /> },
   { path: "/anniversary", element: <Anniversary /> },
   { path: "/friendship", element: <Friendship /> },
+  { path: "/customsweater", element: <CustomSweater /> },
 ];
 
 const router = createHashRouter(

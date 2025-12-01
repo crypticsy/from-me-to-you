@@ -6,3 +6,4 @@ export { Congratulations } from "../letters/Congratulations";
 export { GetWellSoon } from "../letters/GetWellSoon";
 export { Anniversary } from "../letters/Anniversary";
 export { Friendship } from "../letters/Friendship";
+export { CustomSweater } from "../letters/CustomSweater";

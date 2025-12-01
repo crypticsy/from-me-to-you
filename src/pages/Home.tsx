@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { PiHeartBold, PiHandHeartFill, PiTrophyFill, PiFlowerTulipFill, PiChampagneFill, PiHandsClappingFill, PiEyeBold, PiShareNetworkBold } from "react-icons/pi";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
+import { IoShirt } from "react-icons/io5";
 import CircularGallery from "../components/CircularGallery";
+import { SweaterCustomizationModal } from "../components";
 import { renderToStaticMarkup } from 'react-dom/server';
 import { useState, useEffect, useRef } from "react";
 import { Dialog } from "primereact/dialog";
@@ -13,6 +15,7 @@ export function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showSweaterModal, setShowSweaterModal] = useState(false);
   const [selectedLetter, setSelectedLetter] = useState<{ title: string; path: string; color: string } | null>(null);
 
   useEffect(() => {
@@ -114,6 +117,17 @@ export function Home() {
       iconColor: "text-indigo-500",
       iconHoverColor: "group-hover:text-indigo-600",
     },
+    {
+      title: "Sweater",
+      subtitle: "A warm gift",
+      path: "/customsweater",
+      icon: IoShirt,
+      color: "from-rose-100 to-purple-100",
+      borderColor: "border-rose-500",
+      shadowColor: "shadow-rose-300/50",
+      iconColor: "text-rose-500",
+      iconHoverColor: "group-hover:text-rose-600",
+    },
   ];
 
   // Generate SVG data URLs for card images with icons
@@ -163,6 +177,7 @@ export function Home() {
     "from-teal-100 to-cyan-100": { from: "#ccfbf1", to: "#cffafe" },
     "from-amber-100 to-yellow-100": { from: "#fef3c7", to: "#fef9c3" },
     "from-indigo-100 to-violet-100": { from: "#e0e7ff", to: "#ede9fe" },
+    "from-rose-100 to-purple-100": { from: "#ffe4e6", to: "#f3e8ff" },
   };
 
   const iconColorMap: Record<string, string> = {
@@ -173,6 +188,7 @@ export function Home() {
     "text-teal-500": "#14b8a6",
     "text-amber-500": "#f59e0b",
     "text-indigo-500": "#6366f1",
+    "text-rose-500": "#f43f5e",
   };
 
   const galleryItems = letters.map(letter => {
@@ -224,7 +240,12 @@ export function Home() {
               const letter = letters[actualIndex];
               if (letter.path) {
                 setSelectedLetter(letter);
-                setShowModal(true);
+                // Show customization modal for sweater, regular modal for others
+                if (letter.path === "/customsweater") {
+                  setShowSweaterModal(true);
+                } else {
+                  setShowModal(true);
+                }
               }
             }}
           />
@@ -260,6 +281,12 @@ export function Home() {
 
       {/* Toast Notification */}
       <Toast ref={toast} position="top-right" />
+
+      {/* Sweater Customization Modal */}
+      <SweaterCustomizationModal
+        visible={showSweaterModal}
+        onHide={() => setShowSweaterModal(false)}
+      />
 
       {/* Modal */}
       <Dialog

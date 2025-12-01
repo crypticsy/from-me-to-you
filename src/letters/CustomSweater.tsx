@@ -132,7 +132,7 @@ const SweaterDisplay = ({ color, pattern, stickers }: SweaterConfig) => {
           return (
             <g key={index} transform={`translate(${pos.x - 12}, ${pos.y - 12})`}>
               <svg x="0" y="0" width="32" height="32" viewBox="0 0 24 24">
-                <path d={iconPath} fill="#ffffff" />
+                <path d={iconPath} fill="#2E2828" />
               </svg>
             </g>
           );
@@ -162,7 +162,7 @@ export function CustomSweater() {
   }, [location.search]);
 
   return (
-    <Letter theme="friendship">
+    <Letter theme="sweater">
       <LetterContainer bgGradient="from-purple-50 via-pink-50 to-blue-50">
         {/* Title */}
         <h1

@@ -2,11 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PiHeartBold, PiHandHeartFill, PiTrophyFill, PiHeartbeatFill, PiChampagneFill, PiHandsClappingFill } from "react-icons/pi";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
+import { IoShirt } from "react-icons/io5";
 import { FaRegHandPointer } from "react-icons/fa";
 
 interface LetterProps {
   children: React.ReactNode;
-  theme?: "valentine" | "birthday" | "thankyou" | "congratulations" | "getwellsoon" | "anniversary" | "friendship";
+  theme?: "valentine" | "birthday" | "thankyou" | "congratulations" | "getwellsoon" | "anniversary" | "friendship" | "sweater";
 }
 
 export function Letter({ children, theme = "valentine" }: LetterProps) {
@@ -71,6 +72,14 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
       stamp: "bg-indigo-700",
       stampBorder: "border-purple-900",
     },
+    sweater: {
+      envelope: "bg-rose-100",
+      flap: "bg-rose-200",
+      paper: "bg-pink-50",
+      accent: "border-rose-300",
+      stamp: "bg-rose-500",
+      stampBorder: "border-pink-900",
+    },
   };
 
   const colors = themeColors[theme];
@@ -91,6 +100,8 @@ export function Letter({ children, theme = "valentine" }: LetterProps) {
         return <PiChampagneFill />;
       case "friendship":
         return <PiHandsClappingFill />;
+      case "sweater":
+        return <IoShirt />;
       default:
         return <PiHeartBold />;
     }

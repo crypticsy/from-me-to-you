@@ -293,30 +293,30 @@ export function Home() {
         visible={showModal}
         onHide={() => setShowModal(false)}
         dismissableMask
-        className="w-11/12 max-w-md"
+        className="w-[95vw] sm:w-11/12 max-w-md max-h-[95vh]"
         pt={{
-          root: { className: 'rounded-3xl shadow-2xl bg-gradient-to-br from-amber-50 via-rose-50 to-purple-50' },
+          root: { className: 'rounded-2xl sm:rounded-3xl shadow-2xl bg-gradient-to-br from-amber-50 via-rose-50 to-purple-50' },
           header: { className: 'hidden' },
-          content: { className: 'rounded-3xl p-6 sm:p-8' }
+          content: { className: 'rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 overflow-y-auto' }
         }}
       >
-        <div className="text-center space-y-8 py-2">
-          <div className="space-y-3">
+        <div className="text-center space-y-4 sm:space-y-8 py-3 sm:py-2">
+          <div className="space-y-1.5 sm:space-y-3">
             <h2
-              className="text-4xl sm:text-5xl text-gray-700 leading-wide"
+              className="text-3xl sm:text-4xl md:text-5xl text-gray-700 leading-wide"
               style={{ fontFamily: "'Caveat', cursive", lineHeight:"1.2" }}
             >You picked the &nbsp;<br/>
               {selectedLetter?.title} Letter
             </h2>
             <p
-              className="text-base sm:text-lg text-gray-600 leading-relaxed"
+              className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed"
               style={{ fontFamily: "'Indie Flower', cursive" }}
             >
               What would you like to do?
             </p>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2 sm:gap-4">
             {/* Preview Button */}
             <button
               onClick={() => {
@@ -325,12 +325,12 @@ export function Home() {
                   navigate(selectedLetter.path);
                 }
               }}
-              className="group relative w-full py-5 px-6 bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 border-2 border-purple-300 text-purple-700 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 overflow-hidden"
+              className="group relative w-full py-3 sm:py-5 px-4 sm:px-6 bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 border-2 border-purple-300 text-purple-700 rounded-xl sm:rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 overflow-hidden"
             >
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-              <PiEyeBold className="text-2xl sm:text-3xl relative z-10" />
+              <PiEyeBold className="text-xl sm:text-2xl md:text-3xl relative z-10" />
               <span
-                className="text-xl sm:text-2xl relative z-10"
+                className="text-lg sm:text-xl md:text-2xl relative z-10"
                 style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
               >
                 Preview Letter
@@ -351,12 +351,12 @@ export function Home() {
                   });
                 }
               }}
-              className="group relative w-full py-5 px-6 bg-gradient-to-br from-blue-100 to-cyan-100 hover:from-blue-200 hover:to-cyan-200 border-2 border-blue-300 text-blue-700 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 overflow-hidden"
+              className="group relative w-full py-3 sm:py-5 px-4 sm:px-6 bg-gradient-to-br from-blue-100 to-cyan-100 hover:from-blue-200 hover:to-cyan-200 border-2 border-blue-300 text-blue-700 rounded-xl sm:rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 overflow-hidden"
             >
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-              <PiShareNetworkBold className="text-2xl sm:text-3xl relative z-10" />
+              <PiShareNetworkBold className="text-xl sm:text-2xl md:text-3xl relative z-10" />
               <span
-                className="text-xl sm:text-2xl relative z-10"
+                className="text-lg sm:text-xl md:text-2xl relative z-10"
                 style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
               >
                 Share Link

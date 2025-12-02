@@ -232,24 +232,24 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
         visible={visible}
         onHide={onHide}
         dismissableMask
-        className="w-11/12 max-w-3xl"
+        className="w-[95vw] sm:w-11/12 max-w-3xl"
         pt={{
-          root: { className: 'rounded-3xl shadow-2xl bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50' },
+          root: { className: 'rounded-2xl sm:rounded-3xl shadow-2xl bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50' },
           header: { className: 'hidden' },
-          content: { className: 'rounded-3xl p-4 sm:p-5' }
+          content: { className: 'rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-5' }
         }}
       >
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {/* Title */}
           <div className="text-center">
             <h2
-              className="text-2xl sm:text-3xl text-purple-600"
+              className="text-xl sm:text-2xl md:text-3xl text-purple-600"
               style={{ fontFamily: "'Caveat', cursive" }}
             >
               Customize Your Sweater
             </h2>
             <p
-              className="text-xs sm:text-sm text-gray-600 mt-1"
+              className="text-xs sm:text-sm text-gray-600 mt-0.5 sm:mt-1"
               style={{ fontFamily: "'Indie Flower', cursive" }}
             >
               Make it special!
@@ -257,25 +257,25 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
           </div>
 
           {/* Two Column Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {/* Left Column - Options */}
-            <div className="space-y-3 order-2 md:order-1">
+            <div className="space-y-2 sm:space-y-3 order-2 md:order-1">
               {/* Color Selection */}
               <div>
                 <label
-                  className="block text-base text-gray-700 mb-1.5"
+                  className="block text-sm sm:text-base text-gray-700 mb-1 sm:mb-1.5"
                   style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
                 >
                   Choose Color:
                 </label>
-                <div className="grid grid-cols-4 gap-1.5">
+                <div className="grid grid-cols-4 gap-1 sm:gap-1.5">
                   {colors.map(color => (
                     <button
                       key={color.value}
                       onClick={() => handleColorSelect(color.value)}
-                      className={`w-full aspect-square ${color.bg} rounded-lg transition-all ${
+                      className={`w-full aspect-square ${color.bg} rounded-md sm:rounded-lg transition-all ${
                         config.color === color.value
-                          ? "ring-3 ring-offset-1 ring-gray-700 scale-105"
+                          ? "ring-2 sm:ring-3 ring-offset-1 ring-gray-700 scale-105"
                           : "hover:scale-105"
                       }`}
                       title={color.name}
@@ -287,17 +287,17 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
               {/* Pattern Selection */}
               <div>
                 <label
-                  className="block text-base text-gray-700 mb-1.5"
+                  className="block text-sm sm:text-base text-gray-700 mb-1 sm:mb-1.5"
                   style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
                 >
                   Choose Pattern:
                 </label>
-                <div className="grid grid-cols-2 gap-1.5">
+                <div className="grid grid-cols-2 gap-1 sm:gap-1.5">
                   {patterns.map(pattern => (
                     <button
                       key={pattern.value}
                       onClick={() => handlePatternSelect(pattern.value)}
-                      className={`px-2 py-1.5 rounded-lg border-2 transition-all text-xs ${
+                      className={`px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg border-2 transition-all text-xs sm:text-sm ${
                         config.pattern === pattern.value
                           ? "bg-purple-500 text-white border-purple-600 scale-105"
                           : "bg-white text-gray-700 border-gray-300 hover:border-purple-300 hover:scale-105"
@@ -313,38 +313,38 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
               {/* Sticker Selection */}
               <div>
                 <label
-                  className="block text-base text-gray-700 mb-1.5"
+                  className="block text-sm sm:text-base text-gray-700 mb-1 sm:mb-1.5"
                   style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
                 >
                   Add Sticker (optional):
                 </label>
-                <div className="grid grid-cols-5 gap-1.5">
+                <div className="grid grid-cols-5 gap-1 sm:gap-1.5">
                   {stickers.map(sticker => (
                     <button
                       key={sticker.value}
                       onClick={() => handleStickerToggle(sticker.value)}
-                      className={`aspect-square flex flex-col items-center justify-center gap-0.5 rounded-lg border-2 transition-all ${
+                      className={`aspect-square flex flex-col items-center justify-center gap-0.5 rounded-md sm:rounded-lg border-2 transition-all ${
                         config.stickers.includes(sticker.value)
                           ? "bg-purple-500 text-white border-purple-600 scale-105"
                           : "bg-white text-gray-700 border-gray-300 hover:border-purple-300 hover:scale-105"
                       }`}
                       title={sticker.name}
                     >
-                      {sticker.icon}
+                      <span className="text-base sm:text-lg">{sticker.icon}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-2 pt-2">
+              <div className="flex flex-col gap-1.5 sm:gap-2 pt-1 sm:pt-2">
                 <button
                   onClick={handlePreview}
-                  className="w-full py-2 px-3 bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 border-2 border-purple-300 text-purple-700 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                  className="w-full py-2.5 sm:py-2 px-3 bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 active:from-purple-200 active:to-pink-200 border-2 border-purple-300 text-purple-700 rounded-lg sm:rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-100 flex items-center justify-center gap-2"
                 >
-                  <PiEyeBold className="text-lg" />
+                  <PiEyeBold className="text-base sm:text-lg" />
                   <span
-                    className="text-base"
+                    className="text-sm sm:text-base"
                     style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
                   >
                     Preview
@@ -353,11 +353,11 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
 
                 <button
                   onClick={handleShare}
-                  className="w-full py-2 px-3 bg-gradient-to-br from-blue-100 to-cyan-100 hover:from-blue-200 hover:to-cyan-200 border-2 border-blue-300 text-blue-700 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                  className="w-full py-2.5 sm:py-2 px-3 bg-gradient-to-br from-blue-100 to-cyan-100 hover:from-blue-200 hover:to-cyan-200 active:from-blue-200 active:to-cyan-200 border-2 border-blue-300 text-blue-700 rounded-lg sm:rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-100 flex items-center justify-center gap-2"
                 >
-                  <PiShareNetworkBold className="text-lg" />
+                  <PiShareNetworkBold className="text-base sm:text-lg" />
                   <span
-                    className="text-base"
+                    className="text-sm sm:text-base"
                     style={{ fontFamily: "'Caveat', cursive", fontWeight: 600 }}
                   >
                     Share
@@ -368,8 +368,8 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
 
             {/* Right Column - Preview */}
             <div className="order-1 md:order-2">
-              <div className="bg-white/50 rounded-2xl p-3 h-full flex items-center justify-center">
-                <div className="w-full max-w-xs aspect-square">
+              <div className="bg-white/50 rounded-xl sm:rounded-2xl p-2 sm:p-3 h-full flex items-center justify-center">
+                <div className="w-full max-w-[200px] sm:max-w-xs aspect-square">
                   <SweaterPreview {...config} />
                 </div>
               </div>

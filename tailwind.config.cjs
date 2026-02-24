@@ -7,7 +7,12 @@ module.exports = {
     "./node_modules/primereact/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        game: ["'GameFont'", "cursive"],
+        "short-stack": ["'Short Stack'", "cursive"],
+      },
+    },
   },
   plugins: [],
 };

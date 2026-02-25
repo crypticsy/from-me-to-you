@@ -12,7 +12,7 @@ export function ThankYou() {
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
             Your support, your patience, and your willingness to show up when
-            it mattered most — it means more to me than you know.
+            it mattered most. It means more to me than you know.
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.7s" }}>
             From the bottom of my heart, thank you for being you. I'm so lucky

@@ -9,6 +9,7 @@ interface SweaterConfig {
   color: string;
   pattern: string;
   stickers: string[];
+  lang: "en" | "np";
 }
 
 const colorMap: Record<string, string> = {
@@ -29,7 +30,7 @@ const stickerIconPaths: Record<string, string> = {
   sparkle: "M12 2l2.4 7.2L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.8L12 2z",
 };
 
-const SweaterDisplay = ({ color, pattern, stickers }: SweaterConfig) => {
+const SweaterDisplay = ({ color, pattern, stickers }: Omit<SweaterConfig, "lang">) => {
   const sweaterColor = colorMap[color] || colorMap.rose;
   const fill = pattern === "solid" ? sweaterColor : "url(#sw-pattern)";
 
@@ -85,13 +86,45 @@ const SweaterDisplay = ({ color, pattern, stickers }: SweaterConfig) => {
   );
 };
 
+const nepaliLines = [
+  "ना, ना",
+  "ना ना ना, ना",
+  "तिमीबिना तिमी हुनू",
+  "नछोएरै हरदम छुनू",
+  "भेटिरहनू नपर्खेर",
+  "रुझाइरहनू नबर्सेर",
+  "ए, आ हा, हा, बुकीफूल",
+  "तिमीजस्तै न्यानो, हो",
+  "तिमीजस्तै शीतल",
+  "ऊनको स्विटर",
+];
+
+const englishLines = [
+  "I've been carrying this warmth",
+  "for longer than I can explain.",
+  "So I stitched it into something",
+  "you could actually hold onto,",
+  "every loop, every thread,",
+  "a word I couldn't say out loud.",
+  "Wear it when the cold gets in.",
+  "Know that someone out there",
+  "is thinking of you,",
+  "wishing they could wrap you",
+  "in everything they feel.",
+];
+
 export function CustomSweater() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const receiverName = searchParams.get("to");
   const senderName = searchParams.get("from");
 
-  const [config, setConfig] = useState<SweaterConfig>({ color: "rose", pattern: "solid", stickers: [] });
+  const [config, setConfig] = useState<SweaterConfig>({
+    color: "rose",
+    pattern: "solid",
+    stickers: [],
+    lang: "en",
+  });
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -99,15 +132,18 @@ export function CustomSweater() {
       color: params.get("color") || "rose",
       pattern: params.get("pattern") || "solid",
       stickers: params.get("stickers")?.split(",").filter(Boolean) ?? [],
+      lang: (params.get("lang") as "en" | "np") || "en",
     });
   }, [location.search]);
 
+  const lines = config.lang === "np" ? nepaliLines : englishLines;
+
   return (
     <Letter theme="sweater">
-      <div className="h-screen-safe w-screen flex flex-col sm:flex-row items-center justify-center bg-[#FFF8F0] safe-left safe-right overflow-hidden gap-6 sm:gap-10 px-6 sm:px-10 py-8">
+      <div className="h-screen-safe w-screen flex flex-col sm:flex-row items-center justify-center bg-[#FFF8F0] safe-left safe-right overflow-hidden gap-6 sm:gap-10 px-4 sm:px-10 py-6">
 
         {/* ── Sweater (outside the letter) ── */}
-        <div className="flex-shrink-0 w-36 sm:w-48 md:w-56">
+        <div className="flex-shrink-0 w-64 sm:w-80 md:w-[26rem]">
           <SweaterDisplay {...config} />
         </div>
 
@@ -119,8 +155,8 @@ export function CustomSweater() {
             border: "1.5px solid #E4DDD6",
             borderRadius: "3px",
             boxShadow: "0 2px 6px rgba(0,0,0,0.06), 0 10px 28px rgba(0,0,0,0.09), 4px 5px 0px #D8CFC6",
-            minHeight: "min(60vh, 380px)",
-            maxHeight: "80vh",
+            minHeight: "min(75vh, 520px)",
+            maxHeight: "88vh",
           }}
         >
           {/* Accent top bar */}
@@ -161,13 +197,20 @@ export function CustomSweater() {
               </p>
             )}
 
-            <div className="flex-1 text-[#1A1208] space-y-5 text-base font-short-stack" style={{ lineHeight: "2.4" }}>
-              <p className="animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
-                I made this for you, with everything I never said out loud.
-              </p>
-              <p className="animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
-                I hope it keeps you warm in the ways I wish I could.
-              </p>
+            <div
+              key={config.lang}
+              className="flex-1 text-[#1A1208] text-base font-short-stack space-y-1"
+              style={{ lineHeight: "2.2" }}
+            >
+              {lines.map((line, i) => (
+                <p
+                  key={i}
+                  className="animate-fadeInUp"
+                  style={{ animationDelay: `${0.05 * i}s` }}
+                >
+                  {line}
+                </p>
+              ))}
             </div>
 
             <div className="flex-shrink-0 pt-6 font-short-stack text-sm sm:text-base text-[#1A1208] space-y-0.5">

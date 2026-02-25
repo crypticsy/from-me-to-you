@@ -7,7 +7,7 @@ export function GetWellSoon() {
         <div className="font-short-stack space-y-5 text-sm sm:text-base leading-loose text-[#1A1208]">
           <p className="animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
             I hope these words bring you a little comfort and warmth as you take
-            the time you need to rest and heal. Please don't rush — your health
+            the time you need to rest and heal. Please don't rush. Your health
             comes first.
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
@@ -15,7 +15,7 @@ export function GetWellSoon() {
             who care about you deeply. We're all cheering you on.
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.7s" }}>
-            Take all the time you need — we'll be here waiting for you, warm
+            Take all the time you need. We'll be here waiting for you, warm
             and ready, when you're feeling better.
           </p>
         </div>

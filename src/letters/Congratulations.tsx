@@ -14,7 +14,7 @@ export function Congratulations() {
             and your unwavering commitment to excellence in everything you do.
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.7s" }}>
-            You deserve every bit of this success. Keep shining — the best is
+            You deserve every bit of this success. Keep shining, the best is
             still ahead of you.
           </p>
         </div>

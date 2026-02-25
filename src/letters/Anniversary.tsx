@@ -14,7 +14,7 @@ export function Anniversary() {
             moments feel extraordinary just by being in them with me.
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.7s" }}>
-            Here's to our journey together — to all the memories we've made and
+            Here's to our journey together, to all the memories we've made and
             all the adventures that are still to come.
           </p>
         </div>

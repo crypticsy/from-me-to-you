@@ -12,7 +12,7 @@ export function Friendship() {
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
             Your unwavering support and your ability to make every moment
-            brighter just by being you — it means the world to me.
+            brighter just by being you. It means the world to me.
           </p>
           <p className="animate-fadeInUp" style={{ animationDelay: "0.7s" }}>
             Thank you for being the incredible friend that you are. I'm so

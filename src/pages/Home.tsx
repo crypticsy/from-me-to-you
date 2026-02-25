@@ -8,7 +8,6 @@ import {
   PiHandsClappingFill,
   PiEyeBold,
   PiShareNetworkBold,
-  PiArrowRightBold,
 } from "react-icons/pi";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
 import { IoShirt } from "react-icons/io5";
@@ -300,54 +299,89 @@ export function Home() {
                     key={`${letter.path}-${i}`}
                     draggable={false}
                     onClick={() => handleCardClick(letter)}
-                    className="group relative flex flex-col bg-white rounded-3xl flex-shrink-0 overflow-hidden
-                             w-[52vw] sm:w-[34vw] md:w-[24vw] lg:w-[20vw]
-                             h-[40vh] sm:h-[42vh]
+                    className="group relative flex flex-col flex-shrink-0 overflow-hidden
+                             w-[48vw] sm:w-[32vw] md:w-[22vw] lg:w-[18vw]
+                             h-[44vh] sm:h-[48vh] rounded-2xl
                              transition-all duration-200 cursor-[inherit]"
-                    style={{ filter: "drop-shadow(0 4px 12px rgba(30,20,10,0.10))" }}
+                    style={{
+                      filter: "drop-shadow(0 4px 12px rgba(30,20,10,0.10))",
+                      border: `1px solid ${letter.accent}30`,
+                    }}
                     onMouseEnter={(e) => {
                       if (isDraggingRef.current) return;
-                      e.currentTarget.style.transform = "translateY(-7px)";
+                      e.currentTarget.style.transform = "translateY(-8px) rotate(-1deg)";
                       e.currentTarget.style.filter =
-                        "drop-shadow(0 18px 36px rgba(30,20,10,0.30))";
+                        "drop-shadow(0 20px 40px rgba(30,20,10,0.28))";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "";
-                      e.currentTarget.style.filter = "drop-shadow(0 4px 6px rgba(30,20,10,0.10))";
+                      e.currentTarget.style.filter = "drop-shadow(0 4px 12px rgba(30,20,10,0.10))";
                     }}
                   >
-                    {/* ── Top: coloured section ── */}
-                    <div
-                      className="flex-[3] flex items-center justify-center relative"
-                      style={{ backgroundColor: letter.lightBg }}
-                    >
-                      {/* Index */}
-                      <span className="absolute top-3 right-3 font-game text-[10px] text-[#1A1208]/30">
-                        {String((i % letters.length) + 1).padStart(2, "0")}
-                      </span>
-                      {/* Icon */}
+                    {/* ── Letter paper + envelope flap (shared zone) ── */}
+                    <div className="relative flex-[8] overflow-visible" style={{ backgroundColor: letter.lightBg }}>
+                      {/* Letter paper — anchored top, extends past its container */}
                       <div
-                        className="w-full h-full rounded-2xl flex items-center justify-center text-3xl sm:text-4xl"
+                        className="absolute left-1/2 -translate-x-1/2 top-8 w-[75%] overflow-hidden rounded-2xl"
                         style={{
-                          color: letter.accent,
+                          bottom: "-52px",
+                          background: "#FAFAF8",
+                          boxShadow: "2px 0 6px rgba(0,0,0,0.10), -2px 0 6px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.08)",
+                          zIndex: 5,
                         }}
                       >
-                        <Icon />
+                        {/* Accent strip */}
+                        <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: letter.accent }} />
+
+                        {/* Ruled lines */}
+                        <div
+                          className="absolute inset-0 pointer-events-none"
+                          style={{
+                            backgroundImage: `repeating-linear-gradient(to bottom, transparent, transparent 18px, ${letter.accent}18 18px, ${letter.accent}18 19px)`,
+                            backgroundPositionY: "32px",
+                          }}
+                        />
+
+                        {/* Index */}
+                        <span className="absolute top-3 right-3 font-game text-[10px] text-[#1A1208]/25">
+                          {String((i % letters.length) + 1).padStart(2, "0")}
+                        </span>
+
+                        {/* Icon */}
+                        <div className="w-full h-full flex items-center justify-center text-3xl sm:text-4xl" style={{ color: letter.accent }}>
+                          <Icon />
+                        </div>
                       </div>
+
+                      {/* Envelope flap — transparent V, white below the fold lines */}
+                      <svg
+                        className="absolute bottom-0 left-0 w-full"
+                        style={{ height: "30px", zIndex: 10 }}
+                        viewBox="0 0 100 30"
+                        preserveAspectRatio="none"
+                      >
+                        <polygon points="0,0 50,30 0,30" fill="white" />
+                        <polygon points="100,0 50,30 100,30" fill="white" />
+                        <line x1="0" y1="0" x2="50" y2="30" stroke={letter.accent} strokeOpacity="0.35" strokeWidth="0.9" />
+                        <line x1="100" y1="0" x2="50" y2="30" stroke={letter.accent} strokeOpacity="0.35" strokeWidth="0.9" />
+                      </svg>
                     </div>
 
-                    {/* ── Bottom: white section ── */}
+                    {/* ── Envelope body (bottom ~55%) ── */}
                     <div
-                      className="flex-[2] flex flex-col justify-center px-4 border-t-[3px]"
-                      style={{ borderTopColor: letter.accent }}
+                      className="flex-[9] flex flex-col justify-center px-4 pb-3 gap-2 bg-white relative"
+                      style={{ zIndex: 20 }}
                     >
                       <span className="font-game text-sm sm:text-base text-[#1A1208] leading-tight">
                         {letter.title}
                       </span>
-                      <div className="flex items-center justify-center mt-1.5">
-                        <span className="font-short-stack text-[10px] sm:text-xs text-[#B5A090]">
-                          {letter.subtitle}
-                        </span>
+                      <span className="font-short-stack text-[10px] sm:text-xs text-[#B5A090] mt-0.5">
+                        {letter.subtitle}
+                      </span>
+                      {/* Address lines */}
+                      <div className="mt-3 space-y-1.5 flex flex-col items-center">
+                        <div className="h-[2px] rounded-full w-3/4" style={{ background: `${letter.accent}35` }} />
+                        <div className="h-[2px] rounded-full w-1/2" style={{ background: `${letter.accent}22` }} />
                       </div>
                     </div>
                   </button>

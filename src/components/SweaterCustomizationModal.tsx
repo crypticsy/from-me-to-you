@@ -98,6 +98,7 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
   const navigate = useNavigate();
   const toast = useRef<Toast>(null);
   const [config, setConfig] = useState<SweaterConfig>({ color: "rose", pattern: "solid", stickers: [] });
+  const [lang, setLang] = useState<"en" | "np">("en");
 
   const colors = [
     { name: "Rose",     value: "rose",     hex: "#fda4af" },
@@ -129,6 +130,7 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
     const params = new URLSearchParams();
     params.set("color", config.color);
     params.set("pattern", config.pattern);
+    params.set("lang", lang);
     if (config.stickers.length > 0) params.set("stickers", config.stickers.join(","));
     return `/customsweater?${params.toString()}`;
   };
@@ -248,6 +250,29 @@ export function SweaterCustomizationModal({ visible, onHide }: SweaterCustomizat
                         }}
                       >
                         {s.icon}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Language */}
+                <div>
+                  <label className="font-game block text-xs font-bold text-[#1A1208] mb-2 tracking-wide uppercase">
+                    Letter Language
+                  </label>
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {(["en", "np"] as const).map((l) => (
+                      <button
+                        key={l}
+                        onClick={() => setLang(l)}
+                        className="font-short-stack py-2 px-2 rounded-xl text-xs font-bold transition-all"
+                        style={{
+                          backgroundColor: lang === l ? SWEATER_ACCENT : "#FFF8F0",
+                          color: lang === l ? "white" : "#6B5B4E",
+                          border: `1px solid ${lang === l ? SWEATER_ACCENT : "#E8DDD2"}`,
+                        }}
+                      >
+                        {l === "en" ? "English" : "नेपाली"}
                       </button>
                     ))}
                   </div>

@@ -18,7 +18,7 @@ export function Birthday() {
             this birthday is as wonderful as you make every day feel.
           </p>
           <p className="animate-fadeInUp font-semibold" style={{ animationDelay: "1.0s" }}>
-            Here's to you — happy birthday! 🎂
+            Here's to you. Happy birthday! 🎂
           </p>
         </div>
       </LetterContainer>

@@ -50,7 +50,7 @@ export function Valentine() {
           {/* Letter body */}
           <div className="font-short-stack space-y-3 text-center text-sm sm:text-base md:text-lg text-[#1A1208] max-w-md px-3">
             <p className="leading-relaxed">
-              My love for you is like a circle — it has no beginning and will know of no end.
+              My love for you is like a circle. It has no beginning and will know of no end.
             </p>
             <p className="font-game font-semibold text-xl sm:text-2xl md:text-3xl pt-2" style={{ color: ACCENT }}>
               Will you be my valentine?

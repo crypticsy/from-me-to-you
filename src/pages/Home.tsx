@@ -236,7 +236,7 @@ export function Home() {
         </p>
 
         {/* To / From name inputs */}
-        <div className="mt-8 sm:mt-10 flex items-center justify-center gap-8">
+        <div className="mt-8 sm:mt-10 flex  flex-col md:flex-row items-center justify-center gap-8">
           <div className="flex items-center gap-3">
             <label
               htmlFor="sender-name"

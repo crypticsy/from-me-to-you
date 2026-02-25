@@ -279,7 +279,7 @@ export function Home() {
         <div className="flex-1 min-h-0 flex items-center">
           <div
             ref={carouselRef}
-            className="relative overflow-hidden w-full py-4 sm:py-5 select-none cursor-grab"
+            className="relative [overflow-x:clip] w-full py-10 select-none cursor-grab"
             onMouseDown={handleCarouselMouseDown}
             onTouchStart={handleCarouselTouchStart}
           >
@@ -303,17 +303,17 @@ export function Home() {
                     className="group relative flex flex-col bg-white rounded-3xl flex-shrink-0 overflow-hidden
                              w-[52vw] sm:w-[34vw] md:w-[24vw] lg:w-[20vw]
                              h-[40vh] sm:h-[42vh]
-                             shadow-[0_4px_12px_rgba(30,20,10,0.10)]
                              transition-all duration-200 cursor-[inherit]"
+                    style={{ filter: "drop-shadow(0 4px 12px rgba(30,20,10,0.10))" }}
                     onMouseEnter={(e) => {
                       if (isDraggingRef.current) return;
                       e.currentTarget.style.transform = "translateY(-7px)";
-                      e.currentTarget.style.boxShadow =
-                        "0 22px 52px rgba(30,20,10,0.16)";
+                      e.currentTarget.style.filter =
+                        "drop-shadow(0 18px 36px rgba(30,20,10,0.30))";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "";
-                      e.currentTarget.style.boxShadow = "";
+                      e.currentTarget.style.filter = "drop-shadow(0 4px 6px rgba(30,20,10,0.10))";
                     }}
                   >
                     {/* ── Top: coloured section ── */}
@@ -369,20 +369,52 @@ export function Home() {
 
       {/* ── Footer ────────────────────────────────────────────── */}
       <div className="flex-shrink-0 text-center pb-5 px-4 pt-2">
-        <p className="font-short-stack text-xs text-[#C8B9AA]">
+        <p className="font-short-stack text-xs text-[#C8B9AA] group">
           Made with love by{" "}
           <a
             href="https://www.animeshbasnet.com.np/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-[#8B7355] transition-colors"
+            className="group inline-flex items-center gap-2 transition-opacity duration-200 hover:opacity-80"
           >
-            Crypticsy
+            <span className="font-medium group-hover:text-black">Crypticsy</span>
+            <img
+              src="https://github.com/crypticsy.png"
+              alt="Crypticsy"
+              className="w-7 h-7 rounded-full border-2 border-gold/50"
+            />
           </a>
         </p>
       </div>
 
-      <Toast ref={toast} position="top-right" />
+      <Toast
+        ref={toast}
+        position="top-right"
+        pt={{
+          root: { style: { fontFamily: "inherit", width: "200px", minWidth: "unset" } },
+          message: {
+            style: {
+              background: "#FAFAFA",
+              border: "1.5px solid #E4DDD6",
+              borderRadius: "10px",
+              boxShadow: "0 4px 16px rgba(30,20,10,0.10), 3px 3px 0px #D8CFC6",
+              padding: "12px 18px",
+            },
+          },
+          content: { style: { gap: "8px", padding: 0 } },
+          summary: {
+            style: {
+              color: "#1A1208",
+              fontFamily: "inherit",
+              fontSize: "12px",
+              fontWeight: "600",
+            },
+          },
+          detail: { style: { display: "none" } },
+          icon: { style: { color: "#20BF6B", fontSize: "14px", width: "14px", height: "14px" } },
+          closeButton: { style: { display: "none" } },
+        }}
+      />
 
       <SweaterCustomizationModal
         visible={showSweaterModal}

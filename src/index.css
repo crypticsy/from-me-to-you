@@ -106,7 +106,7 @@ body {
 }
 
 p {
-  line-height: 1.25rem;
+  line-height: inherit;
 }
 
 .prevent-select {

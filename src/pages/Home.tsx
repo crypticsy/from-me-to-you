@@ -93,6 +93,7 @@ export function Home() {
   const [showSweaterModal, setShowSweaterModal] = useState(false);
   const [selectedLetter, setSelectedLetter] = useState<Letter | null>(null);
   const [receiverName, setReceiverName] = useState("");
+  const [senderName, setSenderName] = useState("");
 
   const trackRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -195,10 +196,19 @@ export function Home() {
     }
   };
 
+  const buildParams = () => {
+    const to = receiverName.trim();
+    const from = senderName.trim();
+    const params = new URLSearchParams();
+    if (to) params.set("to", to);
+    if (from) params.set("from", from);
+    const qs = params.toString();
+    return qs ? `?${qs}` : "";
+  };
+
   const handleShare = () => {
     if (!selectedLetter) return;
-    const to = receiverName.trim();
-    const url = `${window.location.origin}${window.location.pathname}#${selectedLetter.path}${to ? `?to=${encodeURIComponent(to)}` : ""}`;
+    const url = `${window.location.origin}${window.location.pathname}#${selectedLetter.path}${buildParams()}`;
     navigator.clipboard.writeText(url).then(() => {
       toast.current?.show({
         severity: "success",
@@ -222,26 +232,45 @@ export function Home() {
           to You
         </h1>
         <p className="font-short-stack text-xs sm:text-sm text-[#9E8E7C] mt-2">
-          Pick a letter · send with love
+          Pick a letter & send with love
         </p>
 
-        {/* Receiver name */}
-        <div className="mt-10 sm:mt-12 flex items-center justify-center gap-3">
-          <label
-            htmlFor="receiver-name"
-            className="font-game text-xs sm:text-sm text-[#9E8E7C] flex-shrink-0"
-          >
-            To:
-          </label>
-          <input
-            id="receiver-name"
-            type="text"
-            value={receiverName}
-            onChange={(e) => setReceiverName(e.target.value)}
-            placeholder="their name..."
-            maxLength={40}
-            className="font-short-stack bg-transparent outline-none text-sm sm:text-base text-[#1A1208] placeholder:text-[#D4C4B4] border-b border-[#E8DDD2] pb-0.5 w-36 sm:w-48"
-          />
+        {/* To / From name inputs */}
+        <div className="mt-8 sm:mt-10 flex items-center justify-center gap-8">
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="sender-name"
+              className="font-game text-xs sm:text-sm text-[#9E8E7C] w-10 text-right flex-shrink-0"
+            >
+              From:
+            </label>
+            <input
+              id="sender-name"
+              type="text"
+              value={senderName}
+              onChange={(e) => setSenderName(e.target.value)}
+              placeholder="your name..."
+              maxLength={40}
+              className="font-short-stack bg-transparent outline-none text-sm sm:text-base text-[#1A1208] placeholder:text-[#D4C4B4] border-b border-[#E8DDD2] pb-0.5 w-36 sm:w-48"
+            />
+          </div>
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="receiver-name"
+              className="font-game text-xs sm:text-sm text-[#9E8E7C] w-10 text-right flex-shrink-0"
+            >
+              To:
+            </label>
+            <input
+              id="receiver-name"
+              type="text"
+              value={receiverName}
+              onChange={(e) => setReceiverName(e.target.value)}
+              placeholder="their name..."
+              maxLength={40}
+              className="font-short-stack bg-transparent outline-none text-sm sm:text-base text-[#1A1208] placeholder:text-[#D4C4B4] border-b border-[#E8DDD2] pb-0.5 w-36 sm:w-48"
+            />
+          </div>
         </div>
       </div>
 
@@ -391,9 +420,13 @@ export function Home() {
                     {selectedLetter.title} Letter
                   </h2>
                   <p className="font-short-stack text-xs text-[#B5A090]">
-                    {receiverName.trim()
-                      ? `To: ${receiverName.trim()}`
-                      : selectedLetter.subtitle}
+                    {receiverName.trim() && senderName.trim()
+                      ? `${senderName.trim()} → ${receiverName.trim()}`
+                      : receiverName.trim()
+                        ? `To: ${receiverName.trim()}`
+                        : senderName.trim()
+                          ? `From: ${senderName.trim()}`
+                          : selectedLetter.subtitle}
                   </p>
                 </div>
               </div>
@@ -403,10 +436,7 @@ export function Home() {
               <button
                 onClick={() => {
                   setShowModal(false);
-                  const to = receiverName.trim();
-                  navigate(
-                    `${selectedLetter.path}${to ? `?to=${encodeURIComponent(to)}` : ""}`,
-                  );
+                  navigate(`${selectedLetter.path}${buildParams()}`);
                 }}
                 className="font-game w-full py-3 flex items-center justify-center gap-2 rounded-xl font-bold text-white text-sm tracking-wide transition-opacity duration-150 hover:opacity-90"
                 style={{ backgroundColor: selectedLetter.accent }}

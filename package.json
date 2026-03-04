@@ -25,6 +25,9 @@
     "react-router-dom": "^6.27.0",
     "uuidv4": "^6.2.13"
   },
+  "resolutions": {
+    "esbuild": "^0.25.0"
+  },
   "devDependencies": {
     "@types/node": "^18.13.0",
     "@types/react": "^18.3.3",

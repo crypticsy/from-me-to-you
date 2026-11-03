@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Toast } from "primereact/toast";
 import { PiEyeBold, PiShareNetworkBold, PiHeart, PiStar, PiSmiley, PiFlower, PiSparkle, PiXBold } from "react-icons/pi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 interface SweaterCustomizationModalProps {
   visible: boolean;

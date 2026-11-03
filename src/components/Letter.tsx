@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import {
   PiHeartBold,
   PiHandHeartFill,

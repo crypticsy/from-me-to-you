@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import floatingBear from "../assets/gifs/floating-bear.gif";
 import { Letter } from "../components";
 import { PiHeartFill } from "react-icons/pi";

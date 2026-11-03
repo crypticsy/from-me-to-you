@@ -1,7 +1,7 @@
 import { Letter } from "../components";
 import { IoShirt } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router";
 
 const ACCENT = "#FC5C65";
 
